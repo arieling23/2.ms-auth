@@ -27,7 +27,7 @@ async function loginUserService({ email, password }) {
     _id: user._id,
     email: user.email,
     name: user.name,
-    role: user.role // ✅ Usamos directamente el rol guardado en authdb
+    role: user.role 
   });
 
   return { token };
