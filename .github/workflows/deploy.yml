@@ -28,7 +28,7 @@ jobs:
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_SSH_KEY }}
+        key: ${{ secrets.EC2_KEY }}
         script: |
           echo "${{ secrets.ENV_FILE }}" > .env
           docker pull arieling/ms-auth
