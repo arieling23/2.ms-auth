@@ -27,7 +27,7 @@ jobs:
         docker push arieling/ms-auth
 
     - name: Acceder a EC2 y desplegar contenedor
-      uses: appleboy/ssh-action@v1.0.0
+      uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USER }}
