@@ -2,7 +2,7 @@ const express = require('express');
 const {
   loginUser,
   changePassword,
-  updatePasswordWithEmail, // 👈 IMPORTANTE: incluir esta función
+  updatePasswordWithEmail, 
 } = require('../controllers/authController');
 const verifyJWT = require('../middlewares/verifyJWT');
 
