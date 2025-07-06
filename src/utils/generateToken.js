@@ -7,7 +7,7 @@ function generateToken(user) {
 
   return jwt.sign(
     {
-      userId: user._id,             // 👈 CAMBIO CLAVE AQUÍ
+      userId: user._id,             
       email: user.email,
       name: user.name,
       role: user.role || 'user',
