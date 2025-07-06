@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3002;
 app.use(cors());
 app.use(express.json());
 
-// Rutas
+
 app.use('/auth', authRoutes);
 
 // ✅ Conexión a MongoDB
