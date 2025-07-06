@@ -24,7 +24,7 @@ jobs:
     - name: Construir imagen y subir a Docker Hub
       run: |
         docker build -t arieling/ms-auth .
-        docker push arieling/ms-user-auth
+        docker push arieling/ms-auth
 
     - name: Acceder a EC2 y desplegar contenedor
       uses: appleboy/ssh-action@v1.0.0
