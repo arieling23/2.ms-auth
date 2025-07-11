@@ -77,5 +77,5 @@ const updatePasswordWithEmail = async (req, res) => {
 module.exports = {
   loginUser,
   changePassword,
-  updatePasswordWithEmail, // 👈 recuerda exportarla
+  updatePasswordWithEmail, 
 };
