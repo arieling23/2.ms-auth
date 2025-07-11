@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGO_URI, {
     startAuthConsumer();
 
     app.listen(PORT, () => {
-      console.log(`🚀 Servidor corriendo en http://10.0.1.58:${PORT}`);
+      console.log(`🚀 Servidor corriendo en http://54.85.0.204:${PORT}`);
     });
   })
   .catch((err) => {
