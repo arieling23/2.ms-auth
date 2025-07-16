@@ -8,36 +8,29 @@ const { startAuthConsumer } = require('./events/consumer');
 const app = express();
 const PORT = process.env.PORT || 3002;
 
-
 const corsOptions = {
-  origin: 'http://54.225.75.133:3000', 
+  origin: 'http://54.225.75.133:3000',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
 
-
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); 
+app.options('*', cors(corsOptions));
 app.use(express.json());
-
 app.use('/auth', authRoutes);
-
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-  .then(() => {
-    console.log('🟢 Conectado a MongoDB');
-
-    
-    startAuthConsumer();
-
-    app.listen(PORT, () => {
-      console.log(`🚀 Servidor corriendo en http://54.85.0.204:${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error('🔴 Error al conectar a MongoDB:', err.message);
+.then(() => {
+  console.log('🟢 Conectado a MongoDB');
+  startAuthConsumer();
+  app.listen(PORT, () => {
+    console.log(`🚀 Servidor corriendo en http://54.85.0.204:${PORT}`);
   });
+})
+.catch((err) => {
+  console.error('🔴 Error al conectar a MongoDB:', err.message);
+});
