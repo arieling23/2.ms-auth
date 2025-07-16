@@ -8,19 +8,19 @@ async function startAuthConsumer() {
 
     await channel.assertExchange('user', 'topic', { durable: true });
 
-    // ─── Queue para user.registered ──────────────
+    
     const registerQueue = 'user.registered.auth';
     await channel.assertQueue(registerQueue, { durable: true });
     await channel.bindQueue(registerQueue, 'user', 'user.registered');
 
-    // ─── Queue para user.role.updated ─────────────
+    
     const roleUpdateQueue = 'user.role.updated.auth';
     await channel.assertQueue(roleUpdateQueue, { durable: true });
     await channel.bindQueue(roleUpdateQueue, 'user', 'user.role.updated');
 
     console.log('📥 [AUTH] Escuchando eventos user.registered y user.role.updated...');
 
-    // ─── CONSUMIDOR: user.registered ─────────────
+    
     channel.consume(registerQueue, async (msg) => {
       try {
         const message = JSON.parse(msg.content.toString());
@@ -46,7 +46,7 @@ async function startAuthConsumer() {
       }
     });
 
-    // ─── CONSUMIDOR: user.role.updated ────────────
+   
     channel.consume(roleUpdateQueue, async (msg) => {
       try {
         const message = JSON.parse(msg.content.toString());

@@ -1,4 +1,4 @@
-// src/models/AuthUser.js
+
 const mongoose = require('mongoose');
 
 const authUserSchema = new mongoose.Schema({

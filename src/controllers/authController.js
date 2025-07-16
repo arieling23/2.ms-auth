@@ -2,7 +2,7 @@ const { loginUserService } = require('../services/authService');
 const AuthUser = require('../models/AuthUser');
 const bcrypt = require('bcryptjs');
 
-// Login normal
+
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -17,10 +17,10 @@ const loginUser = async (req, res) => {
   }
 };
 
-// Cambiar contraseña (usuario autenticado con JWT)
+
 const changePassword = async (req, res) => {
   const { newPassword } = req.body;
-  const userId = req.user.userId; // viene del JWT
+  const userId = req.user.userId; 
 
   if (!newPassword) {
     return res.status(400).json({ message: 'La nueva contraseña es obligatoria.' });
@@ -46,7 +46,6 @@ const changePassword = async (req, res) => {
   }
 };
 
-// ✅ Nueva función: actualización de contraseña por email (desde ms-password-recovery)
 const updatePasswordWithEmail = async (req, res) => {
   const { email, newPassword } = req.body;
 
