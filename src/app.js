@@ -8,20 +8,27 @@ const { startAuthConsumer } = require('./events/consumer');
 const app = express();
 const PORT = process.env.PORT || 3002;
 
-
 const corsOptions = {
-  origin: 'http://54.225.75.133:3000',
+  origin: 'http://54.225.75.133:3000', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
 
-
-// Middlewares
+// CORS Middleware
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
-app.use(express.json());
 
+app.use((req, res, next) => {
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Origin', corsOptions.origin);
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    return res.sendStatus(204);
+  }
+  next();
+});
+
+app.use(express.json());
 app.use('/auth', authRoutes);
 
 
@@ -31,9 +38,7 @@ mongoose.connect(process.env.MONGO_URI, {
 })
   .then(() => {
     console.log('🟢 Conectado a MongoDB');
-
     startAuthConsumer();
-
     app.listen(PORT, () => {
       console.log(`🚀 Servidor corriendo en http://54.85.0.204:${PORT}`);
     });
