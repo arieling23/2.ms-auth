@@ -19,10 +19,10 @@ const corsOptions = {
 
 // Middlewares
 app.use(cors(corsOptions));
-app.options(/^\/api\/.*$/, cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
-app.use('api/auth', authRoutes);
+app.use('/auth', authRoutes);
 
 
 mongoose.connect(process.env.MONGO_URI, {
